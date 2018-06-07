@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html class="pixel-ratio-1">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>手机显示demo1</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<style type="text/css">
+.docs-sub-header {
+  position: relative;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{@color-from}', endColorstr='#{@color-to}', GradientType=1);
+}
+
+.docs-masthead .container {
+  height: 1rem;
+}
+.container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1400px;
+}
+
+.column-group:before,
+.column-group:after {
+  content: " ";
+  display: table;
+}
+.column-group:after {
+  clear: both;
+}
+.container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 1400px;
+}
+.column-group {
+  width: auto;
+}
+.column {
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+  width: 100%;
+}
+.column.pull-right {
+  float: right;
+}
+.column .column-group {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.device-column {
+	width: 400px;
+	margin-left: 20px;
+}
+
+.device {
+  display: none;
+  font-size: 0.85rem;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 1.05rem;
+}
+@media screen and (min-width: 768px) {
+  .device {
+    position: relative;
+    top: 50px;
+    display: block;
+    width: 395px;
+    height: 813px;
+    margin-left: -20px;
+    font-family: "Helvetica Neue", sans-serif;
+    background-image: url("./device-sprite.png");
+    background-size: 300%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    -webkit-transition: background-image 0.1s linear;
+            transition: background-image 0.1s linear;
+  }
+  .device.device-fixed {
+    position: fixed;
+    right: auto;
+  }
+  .device .device-content {
+    position: absolute;
+    top: 117px;
+    left: 37px;
+    width: 321px;
+    height: 569px;
+    overflow: hidden;
+    font-size: 0.85rem;
+    line-height: 1.05rem;
+    background: #eeeeee;
+  }
+  .device .content,
+  .device .bar,
+  .device .modal {
+    position: absolute;
+  }
+  .device iframe {
+    border: 0;
+  }
+  .docs-icons {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+}
+.content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#iframe-wrap{height:100%;overflow:visible;position:relative;z-index:50}
+#iframe-wrap{height:569px!important;margin:0 auto;width:321px;}
+#iframe-wrap iframe{height:568px!important}
+
+</style>
+</head>
+<body>
+<div class="docs-sub-header">
+	<div class="container">
+	  <!-- Components -->
+	  <div class="docs-components column-group">
+		<div class="device-column column pull-right">
+		  <!-- In phone examples -->
+			<div class="device">
+				<div class="device-content" style="border:1px solid red;">
+					<!--方案一：内容自适应滚动-->
+					<!--
+					<div class="content">
+						文字自适应滚动
+					</div>
+					-->
+					<!--方案一：iframe 滚动-->
+						<div id="iframe-wrap">
+
+						<iframe id="iframe" src="http://m.baidu.com" frameborder="0"  width="100%"></iframe>
+						</div>
+				</div>
+			</div>
+		</div>
+	  </div>
+  </div>
+</div>
+<div>
+	<input type="button" value="样式1" onclick="demo(1)">
+	<input type="button" value="样式2" onclick="demo(2)">
+	<input type="button" value="样式3" onclick="demo(3)">
+</div>
+</body>
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script>
+		function demo(str){
+			var move_dis = (395*(str-1))+"px";
+			//alert(move_dis)
+			$('.device').css("background-position","-"+move_dis+" 0px");
+		}
+		$(document).ready(function () {
+            function fixHeight() {
+                var headerHeight = $("#container").height();
+                $("#iframe").attr("height", $(window).height()-54+ "px");
+            }
+            $(window).resize(function () {
+                fixHeight();
+            }).resize();
+		});	
+		
+
+	</script>
+  </html>
